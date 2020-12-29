@@ -1,9 +1,8 @@
 # mT5: Multilingual T5
 
-Multilingual T5 (mT5) is a massively multilingual pretrained text-to-text
-transformer model, trained following a similar recipe as
-[T5](https://github.com/google-research/text-to-text-transfer-transformer).
-This repo can be used to reproduce the experiments in the [mT5 paper][paper].
+多语言T5(mT5)是一种大规模的预训练文本到文本transformer模型，
+遵循与以下类似的方法进行训练：[T5](https://github.com/google-research/text-to-text-transfer-transformer).
+此repo是源自论文 [mT5 paper][paper].
 
 ## Table of Contents
 
@@ -17,10 +16,10 @@ This repo can be used to reproduce the experiments in the [mT5 paper][paper].
 
 ## Languages covered
 
-mT5 is pretrained on the [mC4](https://www.tensorflow.org/datasets/catalog/c4#c4multilingual_nights_stay) corpus, covering 101 languages:
+mT5 在 [mC4](https://www.tensorflow.org/datasets/catalog/c4#c4multilingual_nights_stay) 语料上预训练, 包含 101 种语言:
 
 Afrikaans, Albanian, Amharic, Arabic, Armenian, Azerbaijani, Basque,
-Belarusian, Bengali, Bulgarian, Burmese, Catalan, Cebuano, Chichewa, Chinese,
+Belarusian, Bengali, Bulgarian, Burmese, Catalan, Cebuano, Chichewa, Chinese中文,
 Corsican, Czech, Danish, Dutch, English, Esperanto, Estonian, Filipino,
 Finnish, French, Galician, Georgian, German, Greek, Gujarati, Haitian Creole,
 Hausa, Hawaiian, Hebrew, Hindi, Hmong, Hungarian, Icelandic, Igbo, Indonesian,
@@ -34,11 +33,9 @@ Turkish, Ukrainian, Urdu, Uzbek, Vietnamese, Welsh, West Frisian, Xhosa,
 Yiddish, Yoruba, Zulu.
 
 ## Results
-
-mT5 achieves state-of-the-art performance on many cross-lingual NLP tasks, as
-of November 2020. For example, on
-[XTREME](https://github.com/google-research/xtreme) zero-shot classification,
-structured prediction and QA tasks (showing F1 scores):
+截至2020年11月，mT5在许多跨语言的NLP任务上均实现了最先进的性能。例如，
+[XTREME](https://github.com/google-research/xtreme) zero-shot 分类,
+结构化的预测和问答任务(显示F1 Score) 
 
 | Model | XNLI | PAWS-X | WikiAnn-NER | XQuAD | MLQA | TyDiQA-GoldP |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
@@ -59,21 +56,17 @@ structured prediction and QA tasks (showing F1 scores):
 
 ### Training
 
-To run this code, you need to install the [t5
-library](https://pypi.org/project/t5/). General instructions for training,
-fine-tuning, evaluation, and exporting models for inference can be found in the
-[t5
-repo](https://github.com/google-research/text-to-text-transfer-transformer). In
-order to use the additional mT5 tasks provided in this library with the
-`t5_mesh_transformer` command, run from this directory and add the flag
-`--module_import="multilingual_t5.tasks"`. There is also support for [mT5 in
-HuggingFace](https://huggingface.co/transformers/model_doc/mt5.html); see
-instructions in the T5 repo
+要运行此代码，您需要安装  [t5 library](https://pypi.org/project/t5/). 训练的一般说明 
+微调，评估和导出模型以进行推理，可以在一下repo中找出
+[t5 repo](https://github.com/google-research/text-to-text-transfer-transformer). 
+提供了`t5_mesh_transformer` 命令，为了使用该库中其他mT5任务，请从该目录运行并添加命令 
+`--module_import="multilingual_t5.tasks"`. 也支持  [mT5 in
+HuggingFace](https://huggingface.co/transformers/model_doc/mt5.html); 参见T5 repository中的说明 
 [here](https://github.com/google-research/text-to-text-transfer-transformer#t5models).
 
-To train an `mT5-Large` model on the
+在平台上训练`mT5-Large`模型 
 [mc4](https://www.tensorflow.org/datasets/catalog/c4#c4multilingual_nights_stay)
-task from scratch as described in the paper:
+如本文所述从头开始执行任务： 
 
 ```
 export PROJECT=yourproject
@@ -107,7 +100,7 @@ python -m t5.models.mesh_transformer_main \
 
 ### Fine-Tuning
 
-As an example, to finetune the `mT5-Large` model on the `XNLI_zeroshot` task:
+例如，要在XNLI_zeroshot任务上微调mT5-Large模型： 
 
 ```
 export PROJECT=yourproject
@@ -141,10 +134,11 @@ python -m t5.models.mesh_transformer_main \
   --gin_location_prefix="multilingual_t5/gin/"
 ```
 
-The remaining experiments are shown in the [tasks.py](multilingual_t5/tasks.py) file.
+其余实验显示在[tasks.py](multilingual_t5 / tasks.py)文件中。
 
 ## Released Model Checkpoints
 
+我们针对[paper][paper]中描述的预训练模型发布了以下checkpoints： 
 We have released the following checkpoints for pre-trained models described in our [paper][paper]:
 
 * **mT5-Small** (300 million parameters): [gs://t5-data/pretrained_models/mt5/small](https://console.cloud.google.com/storage/browser/t5-data/pretrained_models/mt5/small/)
